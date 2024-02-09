@@ -96,16 +96,15 @@ public class HomeActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.item_clear_memory_cache:
-				ImageLoader.getInstance().clearMemoryCache();
-				return true;
-			case R.id.item_clear_disc_cache:
-				ImageLoader.getInstance().clearDiskCache();
-				return true;
-			default:
-				return false;
+		if (item.getItemId() == R.id.item_clear_memory_cache) {
+			ImageLoader.getInstance().clearMemoryCache();
+			return true;
 		}
+		if (item.getItemId() == R.id.item_clear_disc_cache) {
+			ImageLoader.getInstance().clearDiskCache();
+			return true;
+		}
+		return false;
 	}
 
 	private void copyTestImageToSdCard(final File testImageOnSdCard) {

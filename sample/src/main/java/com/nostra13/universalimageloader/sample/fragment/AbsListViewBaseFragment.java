@@ -57,20 +57,19 @@ public abstract class AbsListViewBaseFragment extends BaseFragment {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.item_pause_on_scroll:
-				pauseOnScroll = !pauseOnScroll;
-				item.setChecked(pauseOnScroll);
-				applyScrollListener();
-				return true;
-			case R.id.item_pause_on_fling:
-				pauseOnFling = !pauseOnFling;
-				item.setChecked(pauseOnFling);
-				applyScrollListener();
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
+		if (item.getItemId() == R.id.item_pause_on_scroll) {
+			pauseOnScroll = !pauseOnScroll;
+			item.setChecked(pauseOnScroll);
+			applyScrollListener();
+			return true;
 		}
+		if (item.getItemId() == R.id.item_pause_on_fling) {
+			pauseOnFling = !pauseOnFling;
+			item.setChecked(pauseOnFling);
+			applyScrollListener();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	protected void startImagePagerActivity(int position) {
