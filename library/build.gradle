@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
-    namespace 'com.nostra13.universalimageloader'
+    namespace 'imageloader'
 
     defaultConfig {
         compileSdkVersion 33
@@ -21,25 +21,3 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.11.1'
     testImplementation 'com.squareup.assertj:assertj-android:1.0.0'
 }
-
-
-// build a jar with source files
-tasks.register('sourcesJar', Jar) {
-    from android.sourceSets.main.java.srcDirs
-    archiveClassifier = 'sources'
-}
-
-artifacts {
-    archives sourcesJar
-}
-
-// Build a jar file in addition to the default aar file
-android.libraryVariants.configureEach { variant ->
-    def name = variant.buildType.name
-    def task = project.tasks.create "jar${name.capitalize()}", Jar
-    task.dependsOn variant.javaCompile
-    task.from variant.javaCompile.destinationDir
-    artifacts.add('archives', task);
-}
-
-//apply from: '../gradle/maven_push.gradle'
